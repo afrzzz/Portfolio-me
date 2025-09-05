@@ -4,7 +4,14 @@ import react from '@vitejs/plugin-react'
 import laravel from 'laravel-vite-plugin'
 import { defineConfig } from 'vite'
 
-const isVercel = !!process.env.VERCEL // true kalau running di Vercel
+const isVercel = process.env.VERCEL === '1'
+
+// Definisikan plugin Wayfinder hanya jika bukan di Vercel
+const wayfinderPlugin = !isVercel
+    ? wayfinder({
+          formVariants: true,
+      })
+    : null
 
 export default defineConfig({
     plugins: [
@@ -15,14 +22,7 @@ export default defineConfig({
         }),
         react(),
         tailwindcss(),
-        // hanya aktifkan Wayfinder kalau BUKAN di Vercel
-        ...(isVercel
-            ? []
-            : [
-                  wayfinder({
-                      formVariants: true,
-                  }),
-              ]),
+        ...(wayfinderPlugin ? [wayfinderPlugin] : []), // hanya masukin kalau ada
     ],
     esbuild: {
         jsx: 'automatic',
