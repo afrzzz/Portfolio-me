@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
 
+const isVercel = !!process.env.VERCEL; // detect build environment
+
 export default defineConfig({
     plugins: [
         laravel({
@@ -13,10 +15,11 @@ export default defineConfig({
         }),
         react(),
         tailwindcss(),
-        wayfinder({
+        // hanya jalankan Wayfinder kalau bukan di Vercel
+        !isVercel && wayfinder({
             formVariants: true,
         }),
-    ],
+    ].filter(Boolean), // hapus plugin falsy
     esbuild: {
         jsx: 'automatic',
     },
