@@ -1,10 +1,10 @@
-import { wayfinder } from '@laravel/vite-plugin-wayfinder';
-import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
-import laravel from 'laravel-vite-plugin';
-import { defineConfig } from 'vite';
+import { wayfinder } from '@laravel/vite-plugin-wayfinder'
+import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import laravel from 'laravel-vite-plugin'
+import { defineConfig } from 'vite'
 
-const isVercel = !!process.env.VERCEL; // detect build environment
+const isVercel = !!process.env.VERCEL // true kalau running di Vercel
 
 export default defineConfig({
     plugins: [
@@ -15,12 +15,16 @@ export default defineConfig({
         }),
         react(),
         tailwindcss(),
-        // hanya jalankan Wayfinder kalau bukan di Vercel
-        !isVercel && wayfinder({
-            formVariants: true,
-        }),
-    ].filter(Boolean), // hapus plugin falsy
+        // hanya aktifkan Wayfinder kalau BUKAN di Vercel
+        ...(isVercel
+            ? []
+            : [
+                  wayfinder({
+                      formVariants: true,
+                  }),
+              ]),
+    ],
     esbuild: {
         jsx: 'automatic',
     },
-});
+})
