@@ -1,11 +1,6 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "installCommand": "npm install",
-  "framework": "vite",
-  "functions": {
-    "src/**/*.js": {
-      "runtime": "@vercel/node@18"
-    }
-  }
+  "outputDirectory": "dist",
+  "framework": "vite"
 }
