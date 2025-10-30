@@ -2,9 +2,9 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'CardPasienFiveM',
+      title: 'Web Rumah Sakit Multi Fungsi',
       category: 'web',
-      description: 'Aplikasi kartu pasien untuk game FiveM dengan interface yang user-friendly untuk mengelola data karakter.',
+      description: 'Website rumah sakit multi fungsi yang menyediakan informasi lengkap tentang layanan kesehatan dan fasilitas medis, Website ini juga terintegrasi dengan sistem manajemen pasien untuk kemudahan akses data medis.',
       technologies: ['JavaScript', 'HTML', 'CSS', 'FiveM'],
       github: 'https://github.com/afrzzz/CardPasienFiveM',
       demo: 'https://rs-kisahtanahair.vercel.app/',
@@ -12,7 +12,7 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'CodePersentasiWeb',
+      title: 'Persentasi Web Interaktif',
       category: 'web',
       description: 'Website presentasi interaktif untuk menampilkan konten dan informasi dengan desain yang menarik.',
       technologies: ['JavaScript', 'HTML', 'CSS'],
@@ -22,12 +22,22 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: 'Portfolio-me',
+      title: 'Portfolio Pribadi',
       category: 'web',
       description: 'Website portfolio pribadi yang menampilkan karya, skill, dan pengalaman dengan desain modern.',
       technologies: ['HTML', 'CSS', 'JavaScript'],
       github: 'https://github.com/afrzzz/Portfolio-me',
       demo: '#',
+      featured: false
+    },
+    {
+      id: 4,
+      title: 'Ular Tangga Pasutri',
+      category: 'game',
+      description: 'Game ular tangga pasutri yang menyenangkan untuk bermain bersama pasangan dengan fitur multiplayer.',
+      technologies: ['JavaScript', 'HTML', 'CSS'],
+      github: 'https://github.com/afrzzz/ular-tangga-pasutri',
+      demo: 'https://ular-tangga-pasutri.vercel.app/',
       featured: false
     }
   ];
@@ -45,23 +55,22 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
-              className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 ${
-                project.featured ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
-              }`}
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:ring-2 hover:ring-blue-500 hover:ring-opacity-50 transition-all duration-300"
             >
               {/* Project Image */}
-              <div className="relative h-48 sm:h-56 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+              <div className="relative h-48 sm:h-56 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center group">
                 <div className="text-4xl sm:text-6xl text-blue-300">
                   {project.category === 'web' && '💻'}
                   {project.category === 'content' && '📱'}
                   {project.category === 'design' && '🎨'}
                   {project.category === 'data' && '📊'}
+                  {project.category === 'game' && '🎮'}
                 </div>
-                <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-opacity duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <div className="flex space-x-4">
                     {project.github !== '#' && (
                       <a
@@ -99,7 +108,7 @@ const Projects = () => {
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800">{project.title}</h3>
                   {project.featured && (
                     <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
-                      Featured
+                      Selalu Update
                     </span>
                   )}
                 </div>
